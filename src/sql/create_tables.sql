@@ -38,6 +38,8 @@ create table request (
     status order_status_type not null default 'created'
 );
 
+alter table request add column creation_date timestamp default now();
+
 create table manager (
     id serial primary key,
     name text not null,
