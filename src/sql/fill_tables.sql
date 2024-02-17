@@ -23,8 +23,8 @@ insert into configuration(model_id, name, is_new, count, specification, price) v
 insert into request(configuration_id, count, client_name, client_email, client_phone, status) VALUES
     (1, 1, 'Иван', '1@1.1', '1111111111', 'created'),
     (1, 1, 'Fedor', '2@2.2', '2222222222', 'in_progress'),
-    (12, 1, 'Petr', '3@3.3', '3333333333', 'completed'),
-    (12, 1, 'Vlad', '4@4.4', '4444444444', 'canceled');
+    (2, 1, 'Petr', '3@3.3', '3333333333', 'completed'),
+    (3, 1, 'Vlad', '4@4.4', '4444444444', 'canceled');
 
 insert into manager(name, email, phone) values 
     ('manager1', '1@1.1', '1111111111'),

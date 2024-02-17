@@ -17,8 +17,7 @@ create table configuration (
     is_new boolean not null,
     count integer constraint positive_count check (count >= 0) default 0,
     specification jsonb default '{}'::jsonb,
-    price integer constraint positive_price check (price >= 0) default 0,
-    -- constraint unique_configuration unique(model_id, name, is_new)
+    price integer constraint positive_price check (price >= 0) default 0
 );
 
 create type order_status_type as enum (
