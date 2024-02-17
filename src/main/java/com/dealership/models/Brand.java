@@ -1,11 +1,9 @@
-package com.dealership.DAO;
+package com.dealership.models;
 
+import jakarta.persistence.Column;
 // import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
-
+import jakarta.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "brand")
@@ -14,11 +12,15 @@ public class Brand {
     @GeneratedValue
     private int id;
 
+    @Column
     private String name;
 
+    @OneToMany(mappedBy = "brand", orphanRemoval = true)
+    private List<Model> models;
+
     public Brand(){};
+
     public Brand(String name){
-        // this.id = id;
         this.name = name;
     }
 
@@ -28,5 +30,9 @@ public class Brand {
 
     public String getName(){
         return name;
+    }
+
+    public void setName(String name){
+        this.name = name;
     }
 }

@@ -7,6 +7,8 @@ import org.hibernate.boot.MetadataSources;
 import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 
+import com.dealership.models.Brand;
+
 import static java.lang.System.out;
 
 import junit.framework.TestCase;
@@ -41,6 +43,10 @@ public class BrandTests extends TestCase {
 			sessionFactory.close();
 		}
 	}
+
+	// public void testGetId(){
+
+	// }
 
     public void testSelect() {
 		// // create a couple of events...
