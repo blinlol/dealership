@@ -20,9 +20,6 @@ import java.time.Instant;
 public class DealershipApplication {
     public static void main(String[] args) {
         SpringApplication.run(DealershipApplication.class, args);
-    
-        System.out.println("SessionFactory: " + HibernateSessionFactoryUtil.getSessionFactory());
-       
     }
 
 }

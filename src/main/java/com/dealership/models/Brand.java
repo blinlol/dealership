@@ -1,7 +1,5 @@
 package com.dealership.models;
 
-import jakarta.persistence.Column;
-// import jakarta.persistence.Column;
 import jakarta.persistence.*;
 import java.util.List;
 
@@ -34,5 +32,12 @@ public class Brand {
 
     public void setName(String name){
         this.name = name;
+    }
+
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Brand brand = (Brand) o;
+        return id == brand.id && name.equals(brand.name);
     }
 }
