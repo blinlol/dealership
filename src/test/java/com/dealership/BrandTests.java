@@ -4,7 +4,6 @@ import com.dealership.models.*;
 import com.dealership.services.*;
 
 import org.junit.jupiter.api.*;
-import java.time.Instant;
 import java.util.List;
 
 
@@ -64,7 +63,6 @@ public class BrandTests {
         Assertions.assertEquals("New name", brand1.getName(), "setName method failed");
         Assertions.assertEquals("New name", brand.getName(), "setName method failed");
 
-        int id = brand.getId();
         brandService.delete(brand);
         brand1 = brandService.findById(brand.getId());
         Assertions.assertNull(brand1, "delete method failed");

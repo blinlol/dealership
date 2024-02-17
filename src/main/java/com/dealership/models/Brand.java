@@ -1,6 +1,7 @@
 package com.dealership.models;
 
 import jakarta.persistence.*;
+import jakarta.transaction.Transactional;
 import java.util.List;
 
 @Entity
@@ -13,7 +14,7 @@ public class Brand {
     @Column
     private String name;
 
-    @OneToMany(mappedBy = "brand", orphanRemoval = true)
+    @OneToMany(mappedBy = "brand", orphanRemoval = true, cascade = CascadeType.ALL)
     private List<Model> models;
 
     public Brand(){};
