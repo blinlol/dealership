@@ -5,10 +5,9 @@ import com.dealership.utils.*;
 
 import org.hibernate.Session;
 import org.hibernate.Transaction;
-import java.util.List;
 
 public class ModelDAO extends CommonDAO<Model>{
-    
+
     public ModelDAO(){
         super(Model.class);
     }
@@ -29,21 +28,4 @@ public class ModelDAO extends CommonDAO<Model>{
             return null;
         }
     }
-
-    public List<Model> findAll(){
-        Session session = HibernateSessionFactoryUtil.getSessionFactory().getCurrentSession();
-        Transaction t = session.beginTransaction();
-        List<Model> m = session.createQuery("from Model", Model.class).getResultList();
-        t.commit();
-        return m;
-    }
-
-    public void save(Model model){
-        Session session = HibernateSessionFactoryUtil.getSessionFactory().getCurrentSession();
-        Transaction t = session.beginTransaction();
-        session.persist(model);
-        t.commit();
-        session.close();
-    }
-
 }
