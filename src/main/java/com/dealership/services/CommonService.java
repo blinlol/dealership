@@ -19,20 +19,20 @@ public abstract class CommonService<T, DAO extends CommonDAO<T>> {
         return dao.findAll();
     }
 
-    public void save(T brand){
-        dao.save(brand);
+    public void save(T obj){
+        dao.save(obj);
     }
 
     // public void saveCollection(List<Brand> brands){
     //     brandDao.saveCollection(brands);
     // }
 
-    public void update(T brand){
-        dao.update(brand);
+    public void update(T obj){
+        dao.update(obj);
     }   
 
-    public void delete(T brand){
-        dao.delete(brand);
+    public void delete(T obj){
+        dao.delete(obj);
     }
 
     public void deleteById(int id){

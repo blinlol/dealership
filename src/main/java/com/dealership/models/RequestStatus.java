@@ -1,8 +1,8 @@
 package com.dealership.models;
 
 public enum RequestStatus {
-    CREATED, 
-    IN_PROGRESS,
-    COMPLETED,
-    CANCELLED
+    created, 
+    in_progress,
+    completed,
+    cancelled
 }

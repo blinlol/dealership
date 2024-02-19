@@ -16,6 +16,7 @@ public abstract class CommonDAO<T> {
     public T findById(int id){
         Session session = HibernateSessionFactoryUtil.getSessionFactory().getCurrentSession();
         Transaction t = session.beginTransaction();
+        // session.flush();
         T b = session.get(entityClass, id);
         t.commit();
         return b;
@@ -24,6 +25,7 @@ public abstract class CommonDAO<T> {
     public List<T> findAll(){
         Session session = HibernateSessionFactoryUtil.getSessionFactory().getCurrentSession();
         Transaction t = session.beginTransaction();
+        session.flush();
         List<T> b = session.createQuery("from " + entityClass.getSimpleName(), entityClass).getResultList();
         t.commit();
         return b;
@@ -33,6 +35,7 @@ public abstract class CommonDAO<T> {
         Session session = HibernateSessionFactoryUtil.getSessionFactory().getCurrentSession();
         Transaction t = session.beginTransaction();
         session.persist(obj);
+        session.flush();
         t.commit();
         session.close();
     }
@@ -43,6 +46,7 @@ public abstract class CommonDAO<T> {
                 for (T obj : objs) {
                     session.persist(obj);
                 }
+                session.flush();
             });
     }
 
@@ -50,6 +54,7 @@ public abstract class CommonDAO<T> {
         HibernateSessionFactoryUtil.getSessionFactory()
             .inTransaction(session -> {
                 session.merge(obj);
+                session.flush();
             });
     }
 
@@ -57,6 +62,7 @@ public abstract class CommonDAO<T> {
         HibernateSessionFactoryUtil.getSessionFactory()
             .inTransaction(session -> {
                 session.remove(obj);
+                session.flush();
             });
     }
 
@@ -64,6 +70,7 @@ public abstract class CommonDAO<T> {
         HibernateSessionFactoryUtil.getSessionFactory()
             .inTransaction(session -> {
                 session.remove(findById(id));
+                session.flush();
             });
     }
 }

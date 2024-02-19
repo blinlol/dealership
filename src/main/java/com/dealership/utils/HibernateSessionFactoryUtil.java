@@ -18,7 +18,8 @@ public class HibernateSessionFactoryUtil {
                 sessionFactory = new MetadataSources(registry)
                                     .addAnnotatedClasses(Brand.class, 
                                                                              Model.class,
-                                                                             Configuration.class)
+                                                                             Configuration.class,
+                                                                             Request.class)
                                     .buildMetadata()
                                     .buildSessionFactory();
             }
