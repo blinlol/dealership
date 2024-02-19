@@ -6,10 +6,6 @@ import com.dealership.utils.*;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
-import java.util.List;
-import static java.lang.System.out;
-
-
 public class BrandDAO extends CommonDAO<Brand>{
     
     public BrandDAO(){

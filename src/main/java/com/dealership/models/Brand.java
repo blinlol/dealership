@@ -1,7 +1,6 @@
 package com.dealership.models;
 
 import jakarta.persistence.*;
-import jakarta.transaction.Transactional;
 import java.util.List;
 
 @Entity

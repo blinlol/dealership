@@ -4,7 +4,6 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 import java.util.List;
 
-import com.dealership.models.Brand;
 import com.dealership.utils.HibernateSessionFactoryUtil;
 
 public abstract class CommonDAO<T> {
