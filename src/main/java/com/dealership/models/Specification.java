@@ -1,10 +1,23 @@
 package com.dealership.models;
 
+import jakarta.persistence.Embeddable;
+import jakarta.persistence.Transient;
+import java.util.*;
+import java.io.Serializable;
 
-public class Specification{
+@Embeddable
+public class Specification implements Serializable{
     private int hp;
     private int mileage;
     private String color;
+
+    public static List<String> getFields(){
+        List<String> fields = new ArrayList<>();
+        fields.add("hp");
+        fields.add("mileage");
+        fields.add("color");
+        return fields;
+    }
 
     public Specification(){}
 

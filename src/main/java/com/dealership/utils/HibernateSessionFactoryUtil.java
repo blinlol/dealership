@@ -24,8 +24,9 @@ public class HibernateSessionFactoryUtil {
                                     .buildSessionFactory();
             }
             catch (Exception e) {
-                StandardServiceRegistryBuilder.destroy(registry);
-                e.printStackTrace();
+                // StandardServiceRegistryBuilder.destroy(registry);
+                // e.printStackTrace();
+                throw e;
             }
         }
         return sessionFactory;

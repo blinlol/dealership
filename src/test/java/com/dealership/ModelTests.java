@@ -56,6 +56,13 @@ public class ModelTests {
     }
 
     @Test
+    public void testFindNotExist(){
+        ModelService ms = new ModelService();
+        Model m = ms.findByName("not exist");
+        Assertions.assertNull(m);
+    }
+
+    @Test
     public void testModelService(){
         ModelService modelService = new ModelService();
         Model m;

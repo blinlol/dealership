@@ -1,6 +1,7 @@
 package com.dealership;
 
 import org.junit.jupiter.api.*;
+import java.util.List;
 
 import com.dealership.models.*;
 import com.dealership.services.*;
@@ -54,5 +55,25 @@ public class ConfigurationTests {
         cs.delete(c);
         c1 = cs.findById(c.getId());
         Assertions.assertNull(c1);
+    }
+
+    @Test
+    public void testFilter(){
+        List<Configuration> lc = cs.findWithFilter("hp", 99, 100);
+        Configuration c = cs.findById(1);
+
+        Assertions.assertEquals(2, lc.size());
+        Assertions.assertTrue(lc.contains(c));
+
+        lc = cs.findWithFilter("color", "black");
+        Assertions.assertEquals(1, lc.size());
+        c = cs.findById(4);
+        Assertions.assertEquals(c, lc.get(0));
+
+        lc = cs.findWithFilter("fool", 1000, 10000);
+        Assertions.assertNull(lc);
+
+        lc = cs.findWithFilter("fool", "qwe");
+        Assertions.assertNull(lc);
     }
 }

@@ -67,4 +67,20 @@ public class BrandTests {
         brand1 = brandService.findById(brand.getId());
         Assertions.assertNull(brand1, "delete method failed");
     }
+
+    @Test
+    public void testBrandDeleteById(){
+        BrandService brandService = new BrandService();
+        Brand b;
+        if (brandService.findByName("Test") != null){
+            b = brandService.findByName("Test");
+            brandService.delete(b);
+        }
+
+        Brand brand = new Brand("Test");
+        brandService.save(brand);
+        brandService.deleteById(brand.getId());
+        brand = brandService.findById(brand.getId());
+        Assertions.assertNull(brand, "deleteById method failed");
+    }
 }
