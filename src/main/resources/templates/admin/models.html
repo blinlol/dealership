@@ -37,7 +37,7 @@
             </tr>
 
             <tr th:each="model : ${models}">
-            <form action="/admin/saveModel" method="post">
+            <form th:action="@{saveModel}" method="POST">
                 <td>
                     <input id="brand" name="brand" type="text" list="list_brands" th:value="${model.getBrand().getName()}" class="form-control">
                 </td>
@@ -45,8 +45,8 @@
                     <input id="model" name="model" type="text" th:value="${model.getName()}" class="form-control">
                 </td>
                 <td>
-                    <button type="submit" class="btn btn-success">save</button>
                     <input type="hidden" name="modelId" th:value="${model.getId()}">
+                    <button type="submit" class="btn btn-success">save</button>
                 </td>
             </form>
 
@@ -55,13 +55,27 @@
                 </button></td>
             </tr>
 
+            <tr>
+                <form th:action="@{addModel}" method="post">
+                    <td>
+                        <input id="brand" name="brand" type="text" list="list_brands" class="form-control">
+                    </td>
+                    <td>
+                        <input id="model" name="model" type="text" class="form-control">
+                    </td>
+                    <td>
+                        <button type="submit" class="btn btn-success">add</button>
+                    </td>
+                </form>
+            </tr>
+
             <datalist id="list_brands">
                 <option th:each="brand : ${brands}" th:value="${brand.getName()}"></option>
             </datalist>
         </tbody>
 </div>
 
-<div th:replace="~{general :: site-footer}"></div>
+<!-- <div th:replace="~{general :: site-footer}"></div> -->
 
 <div th:replace="~{general :: site-script}"></div>
 

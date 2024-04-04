@@ -112,8 +112,20 @@ public class AllControllers {
         com.dealership.models.Model m = new ModelService().findById(Integer.parseInt(modelId));
         m.setName(modelName);
         m.setBrand(b);
+        new ModelService().update(m);
+        return "redirect:/admin/models";
+    }
+
+    @PostMapping(value = {"/admin/addModel"})
+    public String addModel(
+        @RequestParam(name = "model") String modelName,
+        @RequestParam(name = "brand") String brandName,
+        Model model
+    ){
+        Brand b = new BrandService().findByName(brandName);
+        com.dealership.models.Model m = new com.dealership.models.Model(modelName, b);
         new ModelService().save(m);
-        return "admin/models";
+        return "redirect:/admin/models";
     }
 
 }
