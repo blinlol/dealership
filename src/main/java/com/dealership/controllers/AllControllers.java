@@ -11,12 +11,14 @@ import com.dealership.models.Request;
 import com.dealership.models.RequestStatus;
 import com.dealership.models.Configuration;
 import com.dealership.services.*;
-
-import org.hibernate.engine.jdbc.env.internal.LobCreationLogging_.logger;
+import org.apache.commons.logging.LogFactory;
+import org.apache.commons.logging.Log;
 import org.springframework.stereotype.Controller;
 
 @Controller
 public class AllControllers {
+    private final Log log = LogFactory.getLog(getClass());
+
     @GetMapping(value = {"/", "/index"})
     public String index(Model model){
         return "index";
@@ -62,6 +64,11 @@ public class AllControllers {
         return "createOrder";
     }
 
+    @GetMapping(value = "/login")
+    public String login(Model model){
+        return "login";
+    }
+
     @PostMapping(value = {"/saveOrder"})
     public String saveOrder(
         @RequestParam(name = "name") String name,
@@ -83,4 +90,30 @@ public class AllControllers {
         new RequestService().save(r);
         return "successOrder";
     }
+
+    @GetMapping(value = {"/admin/models"})
+    public String adminModels(Model model){
+        ModelService ms = new ModelService();
+        BrandService bs = new BrandService();
+        model.addAttribute("brands", bs.findAll());
+        model.addAttribute("modelService", ms);
+        model.addAttribute("models", ms.findAll());
+        return "admin/models";    
+    }
+
+    @PostMapping(value = {"/admin/saveModel"})
+    public String saveModel(
+        @RequestParam(name = "model") String modelName,
+        @RequestParam(name = "brand") String brandName,
+        @RequestParam(name = "modelId") String modelId,
+        Model model
+    ){
+        Brand b = new BrandService().findByName(brandName);
+        com.dealership.models.Model m = new ModelService().findById(Integer.parseInt(modelId));
+        m.setName(modelName);
+        m.setBrand(b);
+        new ModelService().save(m);
+        return "admin/models";
+    }
+
 }
