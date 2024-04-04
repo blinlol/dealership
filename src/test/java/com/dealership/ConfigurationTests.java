@@ -76,4 +76,11 @@ public class ConfigurationTests {
         lc = cs.findWithFilter("fool", "qwe");
         Assertions.assertNull(lc);
     }
+
+    @Test
+    public void testModel(){
+        Configuration c = cs.findById(1);
+        Model m = ms.findById(3);
+        Assertions.assertEquals(m, c.getModel());
+    }
 }

@@ -88,4 +88,22 @@ public class ModelTests {
         model1 = modelService.findById(model.getId());
         Assertions.assertNull(model1, "delete method failed");
     }
+
+    @Test
+    public void testModelConfigurations(){
+        ModelService ms = new ModelService();
+        Model m = ms.findById(1);
+        List<Configuration> configurations = m.getConfigurations();
+        Assertions.assertEquals(configurations.size(), 1);
+        Assertions.assertEquals(configurations.get(0).getModel(), m);
+
+        m = ms.findById(3);
+        configurations = m.getConfigurations();
+        Assertions.assertEquals(configurations.size(), 2);
+        Assertions.assertEquals(configurations.get(0).getModel(), m);
+
+        m = ms.findById(2);
+        configurations = m.getConfigurations();
+        Assertions.assertEquals(configurations.size(), 0);
+    }
 }

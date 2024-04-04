@@ -4,7 +4,11 @@ import jakarta.persistence.*;
 import java.time.*;
 
 import org.hibernate.annotations.JdbcTypeCode;
+import org.hibernate.annotations.Type;
+import org.hibernate.dialect.PostgreSQLEnumJdbcType;
 import org.hibernate.type.SqlTypes;
+
+import io.hypersistence.utils.hibernate.type.basic.PostgreSQLEnumType;
 
 @Entity
 @Table(name = "request")
@@ -25,8 +29,9 @@ public class Request {
     @Column(name="client_email")
     private String clientEmail;
 
-    @Enumerated(EnumType.STRING)
-    @JdbcTypeCode(SqlTypes.NAMED_ENUM)
+    // @Enumerated(EnumType.STRING)
+    // @JdbcTypeCode(SqlTypes.NAMED_ENUM)
+    @Convert(converter = RequestStatusConverter.class)
     private RequestStatus status;
 
     @Column(name="creation_date")

@@ -12,7 +12,7 @@ public class Configuration{
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "model_id")
     private Model model;
 
@@ -45,6 +45,10 @@ public class Configuration{
 
     public int getId() {
         return id;
+    }
+
+    public Brand getBrand(){
+        return getModel().getBrand();
     }
 
     public Model getModel() {

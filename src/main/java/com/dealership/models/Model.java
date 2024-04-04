@@ -1,5 +1,9 @@
 package com.dealership.models;
 
+import java.util.List;
+
+import org.springframework.boot.context.config.ConfigDataResource;
+
 import jakarta.persistence.*;
 
 @Entity
@@ -15,6 +19,9 @@ public class Model {
 
     @Column
     private String name;
+
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "model", orphanRemoval = true, cascade = CascadeType.ALL)
+    private List<Configuration> configurations;
 
     public Model(){}
 
@@ -41,6 +48,13 @@ public class Model {
 
     public void setBrand(Brand brand) {
         this.brand = brand;
+    }
+
+    public List<Configuration> getConfigurations(){
+        // if (onlyAvailable){
+        //     return configurations.stream().filter(c -> c.getCount() > 0).toList();
+        // }
+        return configurations;
     }
 
     @Override
