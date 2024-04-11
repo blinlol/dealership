@@ -11,14 +11,10 @@ import com.dealership.models.Request;
 import com.dealership.models.RequestStatus;
 import com.dealership.models.Configuration;
 import com.dealership.services.*;
-import org.apache.commons.logging.LogFactory;
-import org.apache.commons.logging.Log;
 import org.springframework.stereotype.Controller;
 
 @Controller
 public class AllControllers {
-    private final Log log = LogFactory.getLog(getClass());
-
     @GetMapping(value = {"/", "/index"})
     public String index(Model model){
         return "index";
@@ -101,6 +97,18 @@ public class AllControllers {
         return "admin/models";    
     }
 
+    @GetMapping(value = {"/admin/model"})
+    public String adminModel(@RequestParam(name = "modelId", required = false) int id, Model model){
+        ModelService ms = new ModelService();
+        BrandService bs = new BrandService();
+        model.addAttribute("brands", bs.findAll());
+
+        com.dealership.models.Model m = ms.findById(id);
+        model.addAttribute("model", m);
+        model.addAttribute("configurations", m.getConfigurations());
+        return "admin/model";
+    }
+
     @PostMapping(value = {"/admin/saveModel"})
     public String saveModel(
         @RequestParam(name = "model") String modelName,
@@ -126,6 +134,26 @@ public class AllControllers {
         com.dealership.models.Model m = new com.dealership.models.Model(modelName, b);
         new ModelService().save(m);
         return "redirect:/admin/models";
+    }
+
+    @PostMapping(value = {"/admin/saveConfiguration"})
+    public String saveConfiguration(
+        @RequestParam(name = "configurationId") String configurationId,
+        @RequestParam(name = "name") String name,
+        @RequestParam(name = "price") String price,
+        @RequestParam(name = "isNew") String isNew,
+        @RequestParam(name = "count") int count,
+        @RequestParam(name = "specification") String specification,
+        Model model
+    ){
+        Configuration c = new ConfigurationService().findById(Integer.parseInt(configurationId));
+        c.setName(name);
+        c.setPrice(Integer.parseInt(price));
+        c.setNew(Boolean.parseBoolean(isNew));
+        c.setCount(count);
+        // c.setSpecification(specification);
+        new ConfigurationService().update(c);
+        return "redirect:/admin/configurations";
     }
 
 }

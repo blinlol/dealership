@@ -1,0 +1,70 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <title>Dealership::admin::model</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <style>
+        .indent {
+            margin-left: 30px;
+            margin-right: 30px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+<div th:replace="~{general :: page-header}"></div>
+<datalist id="list_brands">
+    <option th:each="brand : ${brands}" th:value="${brand.getName()}"></option>
+</datalist>
+<div class="indent">
+    <h3 class="text-center">Model [[${model.getId()}]]</h3>
+    <form th:action="@{saveModel} method="post">
+        <input id="brand" name="brand" type="text" list="list_brands" th:value="${model.getBrand().getName()}" class="form-control">
+        <input id="model" name="model" type="text" th:value="${model.getName()}" class="form-control">
+        <input type="hidden" name="modelId" th:value="${model.getId()}">
+        <button type="submit" class="btn btn-success">save</button>
+    </form>
+
+    List of configurations. <br>
+
+    <table class="table table-striped table-bordered">
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col">Name</th>
+                <th scope="col">Is new</th>
+                <th scope="col">Price</th>
+                <th scope="col">Specification</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr th:each="config : ${configurations}">
+                <form th:action="@{saveConfiguration}" method="post">
+                    <td><input id="name" name="name" type="text" th:value="${config.getName()}" class="form-control"></td>
+                    <td><input id="isNew" name="isNew" type="text" th:value="${config.isNew()}" class="form-control"></td>
+                    <td><input id="price" name="price" type="text" th:value="${config.getPrice()}" class="form-control"></td>
+                    <td><input id="specification" name="specification" type="text" th:value="${config.getSpecification()}" class="form-control"></td>
+                    <td><input type="hidden" name="configurationId" th:value="${config.getId()}">
+                        <button type="submit" class="btn btn-success">save</button>
+                    </td>
+                </form>
+                <!-- <td><a th:href="'/configuration?configurationId=' + ${config.getId()}">
+                    <span>[[${config.getName()}]]</span>
+                </a></td>
+                <td><span>[[${config.isNew()}]]</span></td>
+                <td><span>[[${config.getPrice()}]]</span></td>
+                <td><span>[[${config.getSpecification()}]]</span></td>
+                <td><a class="btn btn-info" th:href="'/createOrder?configurationId=' + ${config.getId()}">Order</a></td> -->
+            </tr>
+        </tbody>
+</div>
+
+<div th:replace="~{general :: site-footer}"></div>
+
+<div th:replace="~{general :: site-script}"></div>
+
+</body>
+</html>

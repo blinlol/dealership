@@ -1,6 +1,40 @@
 # содержание
 1) [часть 1](#часть-1)
 2) [часть 2](#часть-2)
+3) [часть 3](#часть-3)
+
+
+
+
+# часть 3
+В файле [AllControllers.java](../src/main/java/com/dealership/controllers/AllControllers.java) реализованы Spring контроллеры для GET и POST запросов к сайту.
+
+В директории [templates](../src/main/resources/templates/) хранятся статические страницы, параметризованные с помощью Thymleaf.
+В директории [templates/admin](../src/main/resources/templates/admin/) страницы доступные только авторизованным пользователям.
+
+Настройка авторизации в файле [SecurityConfig.java](../src/main/java/com/dealership/config/SecurityConfig.java), реализованна при помоши модуля Spring.security.
+
+Selenium тесты в [SeleniumTests.java](../src/test/java/com/dealership/SeleniumTests.java).
+
+
+
+
+
+
+# часть 2
+
+В файле [HibernateSessionFactoryUtil.java](../src/main/java/com/dealership/utils/HibernateSessionFactoryUtil.java) находится реализация фабрики создания сессий hibernate, для работы с БД.
+
+В модуле [models](../src/main/java/com/dealership/models) сущности БД и enum тип для request.status.
+
+В модуле [DAO](../src/main/java/com/dealership/DAO) реализован класс CommonDAO, реализующий общие для всех DAO методы, от которого наследуются остальные DAO в этом модуле. DAO выполняют обращение к БД и выдачу результатов запроса.
+
+В модуле [services](../src/main/java/com/dealership/services) реализована прослойка между кодом бизнес-логики и кодом обращения к базе данных DAO. Реализован класс CommonService, от которого наследуются остальные сервисы.
+
+
+
+
+
 
 
 # часть 1
@@ -106,16 +140,3 @@
 
 1) таблица отображающая 1 к 1 таблицу model базы данных с дополнительными столбцами-кнопками сохранить и удалить. Если изменить значение в таблице и нажать сохранить, то изменения будут сохранены. Если нажать удалить, то строка будет удалена из бд.
 2) кнопка возврата на главную
-
-
-
-# часть 2
-
-В файле [HibernateSessionFactoryUtil.java](../src/main/java/com/dealership/utils/HibernateSessionFactoryUtil.java) находится реализация фабрики создания сессий hibernate, для работы с БД.
-
-В модуле [models](../src/main/java/com/dealership/models) сущности БД и enum тип для request.status.
-
-В модуле [DAO](../src/main/java/com/dealership/DAO) реализован класс CommonDAO, реализующий общие для всех DAO методы, от которого наследуются остальные DAO в этом модуле. DAO выполняют обращение к БД и выдачу результатов запроса.
-
-В модуле [services](../src/main/java/com/dealership/services) реализована прослойка между кодом бизнес-логики и кодом обращения к базе данных DAO. Реализован класс CommonService, от которого наследуются остальные сервисы.
-
