@@ -58,4 +58,46 @@ public class SeleniumTests {
         driver.findElement(By.linkText("Vesta")).click();
         driver.quit();
     }
+
+    @Test
+    public void postQuery(){
+        driver.get("http://localhost:8080/createOrder?configurationId=4");
+        WebElement name = driver.findElement(By.id("name"));
+        name.sendKeys("n");
+
+        WebElement email = driver.findElement(By.id("email"));
+        email.sendKeys("e");
+
+        WebElement phone = driver.findElement(By.id("phone"));
+        phone.sendKeys("p");
+
+        WebElement submit = driver.findElement(By.cssSelector("button"));
+        submit.click();
+        driver.quit();
+    }
+
+    @Test
+    public void getQuery(){
+        driver.get("http://localhost:8080/model?modelId=3");
+        driver.quit();
+    }
+
+    @Test
+    public void adminPage(){
+        driver.get("http://localhost:8080/admin/models");
+        driver.quit();
+    }
+
+    @Test
+    public void loginPage(){
+        driver.get("http://localhost:8080/login");
+        driver.quit();
+    }
+
+    @Test
+    public void userExp(){
+        driver.get("http://localhost:8080/model?modelId=3");
+        driver.findElement(By.linkText("Order")).click();
+        driver.quit();
+    }
 }
