@@ -46,11 +46,11 @@
                 </td>
                 <td>
                     <input type="hidden" name="modelId" th:value="${model.getId()}">
-                    <button type="submit" class="btn btn-success">save</button>
+                    <button type="submit" class="btn btn-success" id="save">save</button>
                 </td>
             </form>
 
-                <td><button class="btn btn-info" th:href="@{adminModel}">
+                <td><button class="btn btn-info" th:href="@{adminModel}" id="details">
                     details
                 </button></td>
             </tr>

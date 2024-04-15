@@ -79,18 +79,33 @@ public class SeleniumTests {
     @Test
     public void getQuery(){
         driver.get("http://localhost:8080/model?modelId=3");
+        WebElement table = driver.findElement(By.tagName("table"));
+        List<WebElement> thead = table.findElements(By.tagName("th"));
+        assertEquals(4, thead.size());
+        assertEquals("Name", thead.get(0).getText());
+        assertEquals("Price", thead.get(2).getText());
+        driver.findElement(By.cssSelector("button")).click();
         driver.quit();
     }
 
     @Test
     public void adminPage(){
         driver.get("http://localhost:8080/admin/models");
+        WebElement table = driver.findElement(By.tagName("table"));
+        List<WebElement> rows = table.findElement(By.tagName("tbody"))
+                                     .findElements(By.tagName("tr"));
+        rows.get(0).findElement(By.id("brand"));
+        rows.get(0).findElement(By.id("model"));
+        rows.get(0).findElement(By.id("save")).click();
         driver.quit();
     }
 
     @Test
     public void loginPage(){
         driver.get("http://localhost:8080/login");
+        driver.findElement(By.id("username")).sendKeys("u");
+        driver.findElement(By.id("password")).sendKeys("p");
+        driver.findElement(By.cssSelector("button")).click();
         driver.quit();
     }
 
