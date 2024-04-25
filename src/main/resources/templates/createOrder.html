@@ -22,7 +22,7 @@
     <br>
     [[${model.getBrand().getName()}]] [[${model.getName()}]] <br>
 
-    <form action="/saveOrder" method="post">
+    <form th:action="@{/saveOrder}" method="post">
         <div class="form-group">
             <label for="name">Name</label>
             <input type="text" class="form-control" id="name" name="name" placeholder="Enter name">
@@ -39,7 +39,7 @@
             <label for="configurationId" ></label>
             <input type = "hidden" name = "configurationId" th:value="${configuration.getId()}" />
         </div>
-        <button type="submit" class="btn btn-primary">Submit</button>
+        <button type="submit" class="btn btn-primary" id="submit">Submit</button>
     </form>
 </div>
 

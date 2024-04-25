@@ -22,9 +22,10 @@ public class SecurityConfig {
 	public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 		http
 			.authorizeHttpRequests((authorize) -> authorize
-				// .requestMatchers("/admin/**").hasRole("ADMIN")
+				.requestMatchers("/admin/**").hasRole("ADMIN")
 				.requestMatchers("/**").permitAll()
 			)
+
 			.httpBasic(Customizer.withDefaults())
 			.formLogin(Customizer.withDefaults());
 			// .formLogin((formlogin) -> formlogin
@@ -37,6 +38,7 @@ public class SecurityConfig {
 			// .logout((logout) -> logout
 			// 	.logoutSuccessUrl("/")
 			// );
+
 		return http.build();
 	}
 
